@@ -43,4 +43,4 @@ parser.add_argument("--filter_size", type=int, default=5) ## the convolution ker
 parser.add_argument('--n_e', type=int, default=8) ## the number of experts for MoE
 parser.add_argument('--top_k', type=int, default=4) ## the top-k selection for MoE
 ```
-![alt text]https://i.imgur.com/P4QIxax.png
+![]https://i.imgur.com/P4QIxax.png
