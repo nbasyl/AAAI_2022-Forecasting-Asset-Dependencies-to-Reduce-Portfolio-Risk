@@ -1,3 +1,1 @@
 # AAAI_2022_ADM_PREDICTION
-
-ff
