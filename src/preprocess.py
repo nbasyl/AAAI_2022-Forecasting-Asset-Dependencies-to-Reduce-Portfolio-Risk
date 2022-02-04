@@ -47,10 +47,6 @@ def transform_cor_image(closes, lag_t, normal=False, low = 0, upper = 1, tril = 
 
             corr_matrix = np.corrcoef(np.transpose(sub_closes))
             if True in np.isnan(corr_matrix):
-                # print("ohhh shit")
-                # print(True in np.isnan(sub_closes))
-                # print(i)
-                # print("ggg")
                 corr_matrixs.append(corr_matrixs[-1])
             else:
                 if normal == True:
@@ -74,9 +70,6 @@ def simulate_cor_preprocess(train_returns,validate_returns,test_returns, num_ass
         validate_cors = transform_cor_image(validate_returns, lag_t, normal,low, upper)
         test_cors = transform_cor_image(test_returns, lag_t, normal,low, upper)
 
-    print("s",train_cors.shape)
-    print("ss",validate_cors.shape)
-    print("sss",test_cors.shape)
     def get_frame(sequences, input_length=10, input_gap=1, output_length=1, \
                   output_gap=1, rebalance=21):
         data = []
@@ -113,22 +106,16 @@ def simulate_cor_preprocess(train_returns,validate_returns,test_returns, num_ass
                 image_vector_extend[:len(image_vector)] = image_vector
                 output_frames_extend.append([image_vector_extend.reshape(height,height)])
 
-#             if i == 0:
-#                 print("input frames index:")
-#                 print(frame_idx)
-#                 print("output frame start index:%i"%output_frames_start_idx)
             data.append([frame_idx, input_frames_extend, output_frames_extend])
 
         data = np.array(data,dtype=object)
         return data
 
     train_cors_result = get_frame(train_cors,input_length, input_gap, output_length, output_gap,rebalance)
-    print("gogo")
+
     validate_cors_result = get_frame(validate_cors, input_length, input_gap, output_length, output_gap, rebalance)
     test_cors_result = get_frame(test_cors,input_length, input_gap, output_length, output_gap,rebalance)
-    print(train_cors_result.shape)
-    print(validate_cors_result.shape)
-    print(test_cors_result.shape)
+
     return train_cors_result, validate_cors_result, test_cors_result
 
 
@@ -215,8 +202,7 @@ def final_preprocess(returns, num_asset, lag_t, input_length=10, input_gap = 1,o
         cors = transform_cor_image(returns,lag_t)
     else:
         cors = transform_cor_image(returns, lag_t, normal,low, upper)
-#     print(covs.shape)
-#     print(cors.shape)
+
     
     def get_frame(sequences, input_length=10, input_gap=1, output_length=1, \
                   output_gap=1, rebalance=21,split=[0.85, 0.05, 0.1]):
@@ -254,10 +240,7 @@ def final_preprocess(returns, num_asset, lag_t, input_length=10, input_gap = 1,o
                 image_vector_extend[:len(image_vector)] = image_vector
                 output_frames_extend.append([image_vector_extend.reshape(height,height)])
 
-#             if i == 0:
-#                 print("input frames index:")
-#                 print(frame_idx)
-#                 print("output frame start index:%i"%output_frames_start_idx)
+
             data.append([frame_idx, input_frames_extend, output_frames_extend])
 
         data = np.array(data)
@@ -282,12 +265,9 @@ def return_largest_element(array):
 
 def get_cluster(sequence, n_clusters = 12, split_index=-1):
     train_sequence = sequence[:split_index]
-    #print(train_sequence.shape)
+
     labels = KMeans(n_clusters=n_clusters, random_state=0).fit(train_sequence.T).labels_
-    # cluster_model = AffinityPropagation(random_state=5)
-    # labels = cluster_model.fit(train_sequence.T).labels_
-    # print(labels)
-    # print(return_largest_element(labels))
+
     new_cors = np.zeros(sequence.shape) 
     pos_idx = 0
     pos_map = []
@@ -331,8 +311,7 @@ def cluster_preprocess(returns, num_asset, lag_t, input_length=10, input_gap = 1
         cors = transform_cor_image(returns,lag_t)
     else:
         cors = transform_cor_image(returns, lag_t, normal,low, upper)
-#     print(covs.shape)
-#     print(cors.shape)
+
     
     def get_frame(sequences, input_length=10, input_gap=1, output_length=1, \
                   output_gap=1, rebalance=21,split=[0.85, 0.05, 0.1]):
@@ -370,10 +349,7 @@ def cluster_preprocess(returns, num_asset, lag_t, input_length=10, input_gap = 1
                 image_vector_extend[:len(image_vector)] = image_vector
                 output_frames_extend.append([image_vector_extend.reshape(height,height)])
 
-#             if i == 0:
-#                 print("input frames index:")
-#                 print(frame_idx)
-#                 print("output frame start index:%i"%output_frames_start_idx)
+
             data.append([frame_idx, input_frames_extend, output_frames_extend])
 
         data = np.array(data)
@@ -405,8 +381,7 @@ def lstm_preprocess(returns, num_asset, lag_t, input_length=10, input_gap = 1,ou
         cors = transform_cor_image(returns,lag_t)
     else:
         cors = transform_cor_image(returns, lag_t, normal,low, upper)
-#     print(covs.shape)
-#     print(cors.shape)
+
     
     def get_frame(sequences, input_length=10, input_gap=1, output_length=1, \
                   output_gap=1, rebalance=21,split=[0.85, 0.05, 0.1]):
@@ -437,17 +412,6 @@ def lstm_preprocess(returns, num_asset, lag_t, input_length=10, input_gap = 1,ou
             for j in range(output_length):
                 output_frames.append(sequences[output_frames_start_idx+j*output_gap])
             
-            # # Get padding output frames
-            # output_frames_extend = []
-            # for image_vector in output_frames:
-            #     image_vector_extend = np.zeros(height*height)
-            #     image_vector_extend[:len(image_vector)] = image_vector
-            #     output_frames_extend.append([image_vector_extend.reshape(height,height)])
-
-#             if i == 0:
-#                 print("input frames index:")
-#                 print(frame_idx)
-#                 print("output frame start index:%i"%output_frames_start_idx)
             data.append([frame_idx, input_frames, output_frames])
 
         data = np.array(data)
@@ -474,7 +438,6 @@ if __name__ == "__main__":
     output_length = 1
     normal = True
     returns = closes[:,:32]
-    #print(returns.shape)
     pick = np.arange(32)
     save_dir = '../data/' + "num_%i_lag_%i/"%(num_asset, lag_t)
     

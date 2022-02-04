@@ -47,7 +47,7 @@ parser.add_argument('--input_gap',default=21,type=int)
 parser.add_argument('--horizon',default=21,type=int)
 parser.add_argument('--random_select',default=False,type=bool)
 parser.add_argument('--epochs', default=200, type=int)
-parser.add_argument('--dir_folder', type=str, default="gggggg")
+parser.add_argument('--dir_folder', type=str, default="")
 parser.add_argument('--save_model', type=boolean_string, default=True)
 parser.add_argument('--method', type=str, default="raw")
 parser.add_argument('--dilated', type=int, default=0)
@@ -530,7 +530,7 @@ def model_pipeline(data_dir, project_name = "hyper"):
         wandb.run.save()
         config.vec_len = int(config.num_asset*(config.num_asset+1)/2)
         config.width_n_height = int(np.ceil(pow(config.vec_len,0.5)))
-        save_dir = '/tmp2/syliu/adnn/save_model/' + config.dir_folder + '/'
+        save_dir = './save_model/' + config.dir_folder + '/'
         config.data_dir = args.data_dir
         config.save_dir = save_dir
         
