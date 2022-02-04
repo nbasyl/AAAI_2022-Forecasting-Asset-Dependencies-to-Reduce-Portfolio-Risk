@@ -2,7 +2,7 @@
 
 This is our implementation of the paper:
 
-*Haoren Zhu1, Shih-Yang Liu1, Pengfei Zhao, Yingying Chen, Dik Lun Lee. 2022. [Forecasting Asset Dependencies to Reduce Portfolio Risk]() 
+*Haoren Zhu<sup>*</sup>, Shih-Yang Liu<sup>*</sup>, Pengfei Zhao, Yingying Chen, Dik Lun Lee. 2022. [Forecasting Asset Dependencies to Reduce Portfolio Risk]() 
 In AAAI'22.*
 
 **Please cite our AAAI'22 paper if you use our codes. Thanks!**
