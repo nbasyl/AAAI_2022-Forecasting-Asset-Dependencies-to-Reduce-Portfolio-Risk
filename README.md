@@ -2,11 +2,15 @@
 
 This is our implementation of the paper:
 
-*Haoren Zhu <sup>†</sup>, Shih-Yang Liu <sup>†</sup>, Pengfei Zhao, Yingying Chen, Dik Lun Lee. 2022. [Forecasting Asset Dependencies to Reduce Portfolio Risk]() In AAAI'22.*
+*Haoren Zhu <sup>†</sup>, Shih-Yang Liu <sup>†</sup>, Pengfei Zhao, Yingying Chen, Dik Lun Lee. 2022. [Forecasting Asset Dependencies to Reduce Portfolio Risk](https://www.aaai.org/AAAI22Papers/AAAI-7053.ZhuH.pdf) In AAAI'22.*
 
 **Please cite our AAAI'22 paper if you use our codes. Thanks!**
 ```
-To be updated
+@article{zhu2022forecasting,
+  title={Forecasting Asset Dependencies to Reduce Portfolio Risk},
+  author={Zhu, Haoren and Liu, Shih-Yang and Zhao, Pengfei and Chen, Yingying and Lee, Dik Lun},
+  year={2022}
+}
 ```
 
 ## Example to run the codes		
